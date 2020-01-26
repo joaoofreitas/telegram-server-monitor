@@ -1,6 +1,6 @@
 import telegram
 
-TOKEN = "1093338802:AAEctvN5JSOc-XLM0yvOT-QG9-tZfk1F5AM"
+TOKEN = ""
 bot = telebot.TeleBot(TOKEN)
 
 @bot.message_handler(commands=['start', 'help'])
