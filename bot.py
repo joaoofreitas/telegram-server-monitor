@@ -8,9 +8,8 @@ bot = telebot.TeleBot(TOKEN)
 
 ip = get('https://api.ipify.org').text
 
-
-def sensor():
-    output = subprocess.run(['vcgencmd', 'measure_temp'], stdout=subprocess.PIPE).stdout.decode('utf-8')
+def sensor(command):
+    output = subprocess.run(['vcgencmd', command], stdout=subprocess.PIPE).stdout.decode('utf-8')
     return output
 
 @bot.message_handler(commands=['start', 'help'])
@@ -25,7 +24,7 @@ def showIP(message):
 
 @bot.message_handler(commands=['sensors', 'help'])
 def sensors(message):
-	bot.reply_to(message, "My sensors say that: " + sensor())
+	bot.reply_to(message, "My sensors say that: " + sensor('measure_temp')+ '\n' + sensor('measure_volts'))
 
 bot.polling()
 
@@ -34,4 +33,5 @@ bot.polling()
 
 showip - Show my IP
 sensors - How do I feel right now
+listips - //netstat -t 2>/dev/null | awk '{print $5}' | cut -d: -f1 | sort |  uniq -c | sort
 '''
