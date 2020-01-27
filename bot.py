@@ -34,4 +34,8 @@ bot.polling()
 
 showip - Show my IP
 sensors - How do I feel right now
+<<<<<<< HEAD
 '''
+=======
+'''
+>>>>>>> b8b1c9c600e46f4b7db1f3d44304b0ca9ab822e6
