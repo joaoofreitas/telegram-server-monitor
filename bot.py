@@ -3,7 +3,7 @@ from requests import get
 import telebot
 
 
-TOKEN = "1093338802:AAEctvN5JSOc-XLM0yvOT-QG9-tZfk1F5AM"
+TOKEN = ""
 bot = telebot.TeleBot(TOKEN)
 
 ip = get('https://api.ipify.org').text
@@ -27,23 +27,11 @@ def showIP(message):
 def sensors(message):
 	bot.reply_to(message, terminal('/opt/vc/bin/vcgencmd measure_temp'))
 
-
-
-
-
 bot.polling()
-
-
-
-
-
-
-
 
 
 '''
 
 showip - Show my IP
 sensors - How do I feel right now
-
 '''
