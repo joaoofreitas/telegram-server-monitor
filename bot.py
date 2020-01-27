@@ -12,6 +12,11 @@ def sensor(command):
     output = subprocess.run(['vcgencmd', command], stdout=subprocess.PIPE).stdout.decode('utf-8')
     return output
 
+def clientIPs():
+    output = subprocess.run(['netstat', '-t', '2>/dev/null', '|', 'awk', "'{print $5}'", '|', 'cut', '-d:', '-f1', '|', 'sort', '|',  'uniq', '-c', '|', 'sort'], stdout=subprocess.PIPE).stdout.decode('utf-8')
+    return output
+
+
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
 	bot.reply_to(message, "Hello, Im Anton. How can I help you?")
@@ -24,7 +29,12 @@ def showIP(message):
 
 @bot.message_handler(commands=['sensors', 'help'])
 def sensors(message):
-	bot.reply_to(message, "My sensors say that: " + sensor('measure_temp')+ '\n' + sensor('measure_volts'))
+	bot.reply_to(message, "My sensors say that: " + sensor('measure_temp') + sensor('measure_volts'))
+
+
+@bot.message_handler(commands=['listactive', 'help'])
+def listIPs(message):
+	bot.reply_to(message, "This is the list of current active IP Clients:  \n" + clientIPs())
 
 bot.polling()
 
@@ -33,5 +43,5 @@ bot.polling()
 
 showip - Show my IP
 sensors - How do I feel right now
-listips - //netstat -t 2>/dev/null | awk '{print $5}' | cut -d: -f1 | sort |  uniq -c | sort
+listactive - //netstat -t 2>/dev/null | awk '{print $5}' | cut -d: -f1 | sort |  uniq -c | sort
 '''
