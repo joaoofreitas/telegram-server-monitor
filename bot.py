@@ -1,16 +1,16 @@
-from subprocess import check_output as term
 from requests import get
+import  subprocess
 import telebot
 
 
-TOKEN = ""
+TOKEN = "1093338802:AAEctvN5JSOc-XLM0yvOT-QG9-tZfk1F5AM"
 bot = telebot.TeleBot(TOKEN)
 
 ip = get('https://api.ipify.org').text
 
 
-def terminal(command):
-    output = term([command])
+def sensor():
+    output = subprocess.run(['vcgencmd', 'measure_temp'], stdout=subprocess.PIPE).stdout.decode('utf-8')
     return output
 
 @bot.message_handler(commands=['start', 'help'])
@@ -25,7 +25,7 @@ def showIP(message):
 
 @bot.message_handler(commands=['sensors', 'help'])
 def sensors(message):
-	bot.reply_to(message, terminal('/opt/vc/bin/vcgencmd measure_temp'))
+	bot.reply_to(message, "My sensors say that: " + sensor())
 
 bot.polling()
 
@@ -34,8 +34,4 @@ bot.polling()
 
 showip - Show my IP
 sensors - How do I feel right now
-<<<<<<< HEAD
 '''
-=======
-'''
->>>>>>> b8b1c9c600e46f4b7db1f3d44304b0ca9ab822e6
