@@ -4,7 +4,7 @@ from requests import get
 import  subprocess
 import telebot
 
-TOKEN = "1093338802:AAEctvN5JSOc-XLM0yvOT-QG9-tZfk1F5AM"
+TOKEN = ""
 bot = telebot.TeleBot(TOKEN)
 
 ip = get('https://api.ipify.org').text
@@ -42,7 +42,7 @@ def showIP(message):
 
 @bot.message_handler(commands=['sensors'])
 def sensors(message):
-	bot.reply_to(message, "My sensors say that: " + subprocess.run(['sensors'], stdout=subprocess.PIPE).stdout.decode('utf-8')) #sensor('measure_temp') + sensor('measure_volts'))
+	bot.reply_to(message, "My sensors say that: \n\n" + subprocess.run(['sensors'], stdout=subprocess.PIPE).stdout.decode('utf-8')) #sensor('measure_temp') + sensor('measure_volts'))
 
 
 @bot.message_handler(commands=['listactive'])
