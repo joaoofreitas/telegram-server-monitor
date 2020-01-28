@@ -4,17 +4,18 @@ from requests import get
 import  subprocess
 import telebot
 
-TOKEN = ""
+TOKEN = "1093338802:AAEctvN5JSOc-XLM0yvOT-QG9-tZfk1F5AM"
 bot = telebot.TeleBot(TOKEN)
 
 ip = get('https://api.ipify.org').text
 
-def sensor(command):
-    output = subprocess.run(['vcgencmd', command], stdout=subprocess.PIPE).stdout.decode('utf-8')
+def sensor():
+    output = subprocess.run('sensors | awk "NR==3,NR==8"', shell=True, check=True, stdout=subprocess.PIPE, universal_newlines=True)
+    output = output.stdout
     return output
 
 def clientIPs():
-    output = subprocess.run('netstat -tn 2>/dev/null | grep ":80\|22\|443" | awk "{print $5}" | cut -d: -f1 | sort | uniq -c | sort -nr | head', shell=True, check=True, stdout=subprocess.PIPE, universal_newlines=True)
+    output = subprocess.run(r'netstat -tn 2>/dev/null | grep ":80\|22\|443" | awk "{print $5}" | cut -d: -f1 | sort | uniq -c | sort -nr | head', shell=True, check=True, stdout=subprocess.PIPE, universal_newlines=True)
     output = output.stdout
     return output
 
@@ -42,7 +43,7 @@ def showIP(message):
 
 @bot.message_handler(commands=['sensors'])
 def sensors(message):
-	bot.reply_to(message, "My sensors say that: \n\n" + subprocess.run(['sensors'], stdout=subprocess.PIPE).stdout.decode('utf-8')) #sensor('measure_temp') + sensor('measure_volts'))
+	bot.reply_to(message, "My sensors say that: \n\n" + sensor())
 
 
 @bot.message_handler(commands=['listactive'])
