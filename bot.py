@@ -14,7 +14,8 @@ def sensor(command):
     return output
 
 def clientIPs():
-    output = subprocess.run(['netstat', '-t', '2>/dev/null', '|', 'awk', "'{print $5}'", '|', 'cut', '-d:', '-f1', '|', 'sort', '|',  'uniq', '-c', '|', 'sort'], stdout=subprocess.PIPE).stdout.decode('utf-8')
+    output = subprocess.run('netstat -tn 2>/dev/null | grep ":80\|22\|443" | awk "{print $5}" | cut -d: -f1 | sort | uniq -c | sort -nr | head', shell=True, check=True, stdout=subprocess.PIPE, universal_newlines=True)
+    output = output.stdout
     return output
 
 def keyboard():
@@ -46,8 +47,7 @@ def sensors(message):
 
 @bot.message_handler(commands=['listactive'])
 def listIPs(message):
-	bot.reply_to(message, "This is the list of current active IP Clients:  \n" + clientIPs())
-
+	bot.reply_to(message, "This is the list of current active IP Clients:  \n\n" + clientIPs())
 
 @bot.message_handler(regexp="hello")
 def handle_message(message):
