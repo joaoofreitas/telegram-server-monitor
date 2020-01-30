@@ -10,7 +10,7 @@ bot = telebot.TeleBot(TOKEN)
 ip = get('https://api.ipify.org').text
 
 def sensor():
-    output = subprocess.run('sensors | awk "NR==3,NR==8"', shell=True, check=True, stdout=subprocess.PIPE, universal_newlines=True)
+    output = subprocess.run('sensors | awk "NR==3,NR==4"', shell=True, check=True, stdout=subprocess.PIPE, universal_newlines=True)
     output = output.stdout
     return output
 
@@ -22,9 +22,9 @@ def clientIPs():
 def keyboard():
     markup = telebot.types.ReplyKeyboardMarkup()
     
-    showip_ =  telebot.types.KeyboardButton('/showip 🌐')
-    sensors_ =  telebot.types.KeyboardButton('/sensors 🌡️')
-    listActive_ =  telebot.types.KeyboardButton('/listactive 📝')
+    showip_ =  telebot.types.KeyboardButton('What’s your IP address? 🌐')
+    sensors_ =  telebot.types.KeyboardButton('How do you feel? 🌡️')
+    listActive_ =  telebot.types.KeyboardButton('Show me your connections. 📝')
 
     markup.row(showip_)
     markup.row(sensors_, listActive_)
@@ -49,6 +49,22 @@ def sensors(message):
 @bot.message_handler(commands=['listactive'])
 def listIPs(message):
 	bot.reply_to(message, "This is the list of current active IP Clients:  \n\n" + clientIPs())
+
+
+
+@bot.message_handler(regexp="address?")
+def handle_message_ip(message):
+	bot.reply_to(message, "My IP Address is: " + ip)
+
+@bot.message_handler(regexp="feel?")
+def handle_message__temperature(message):
+    bot.reply_to(message, "My sensors say that: \n\n" + sensor())
+
+@bot.message_handler(regexp="connections.")
+def handle_message_connections(message):
+    bot.reply_to(message, "This is the list of current active IP Clients:  \n\n" + clientIPs())
+
+
 
 @bot.message_handler(regexp="hello")
 def handle_message(message):
