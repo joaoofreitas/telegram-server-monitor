@@ -4,7 +4,7 @@ from requests import get
 import  subprocess
 import telebot
 
-TOKEN = "1093338802:AAEctvN5JSOc-XLM0yvOT-"
+TOKEN = ""
 bot = telebot.TeleBot(TOKEN)
 
 ip = get('https://api.ipify.org').text
