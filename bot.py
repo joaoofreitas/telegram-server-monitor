@@ -18,7 +18,7 @@ def sensor():
     return output
 
 def clientIPs():
-    output = subprocess.run(r'netstat -tn 2>/dev/null | grep ":80\|22\|443" | awk "{print $5}" | cut -d: -f1 | sort | uniq -c | sort -nr | head', shell=True, check=True, stdout=subprocess.PIPE, universal_newlines=True)
+    output = subprocess.run(r'echo $SSH_CONNECTION | cut -d " " -f 1', shell=True, check=True, stdout=subprocess.PIPE, universal_newlines=True)
     output = output.stdout
     return output
 
