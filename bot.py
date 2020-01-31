@@ -4,14 +4,17 @@ from requests import get
 import  subprocess
 import telebot
 
-TOKEN = "1093338802:AAEctvN5JSOc-XLM0yvOT-QG9-tZfk1F5AM"
+TOKEN = ""
 bot = telebot.TeleBot(TOKEN)
 
 ip = get('https://api.ipify.org').text
 
 def sensor():
-    output = subprocess.run('sensors | awk "NR==3,NR==4"', shell=True, check=True, stdout=subprocess.PIPE, universal_newlines=True)
-    output = output.stdout
+    temp = subprocess.run(r'cat /sys/class/thermal/thermal_zone0/temp', shell=True, check=True, stdout=subprocess.PIPE, universal_newlines=True)
+    temp = temp.stdout
+    sensorVal = int(temp) / 1000
+    
+    output = str(sensorVal) + 'ºC'
     return output
 
 def clientIPs():
@@ -43,7 +46,7 @@ def showIP(message):
 
 @bot.message_handler(commands=['sensors'])
 def sensors(message):
-	bot.reply_to(message, "My sensors say that: \n\n" + sensor())
+	bot.reply_to(message, "My sensors say that my temperature is: " + sensor())
 
 
 @bot.message_handler(commands=['listactive'])
@@ -58,7 +61,7 @@ def handle_message_ip(message):
 
 @bot.message_handler(regexp="feel?")
 def handle_message__temperature(message):
-    bot.reply_to(message, "My sensors say that: \n\n" + sensor())
+    bot.reply_to(message, "My sensors say that my temperature is: " + sensor())
 
 @bot.message_handler(regexp="connections.")
 def handle_message_connections(message):
