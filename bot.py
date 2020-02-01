@@ -4,8 +4,13 @@ from requests import get
 import  subprocess
 import telebot
 
+def get_folder():
+    folder = subprocess.run(r'pwd', shell=True, check=True, stdout=subprocess.PIPE, universal_newlines=True)
+    folder = folder.stdout
+    return folder
+
 try:
-    with open('config.json', 'r') as configFile:
+    with open(get_folder() + 'config.json', 'r') as configFile:
         config = configFile.read()
     file = jsonloads(config)
 
