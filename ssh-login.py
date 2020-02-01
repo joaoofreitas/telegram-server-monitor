@@ -6,7 +6,7 @@ import telebot
 def get_folder():
     folder = subprocess.run(r'pwd', shell=True, check=True, stdout=subprocess.PIPE, universal_newlines=True)
     folder = folder.stdout
-    return folder
+    return folder[:0]
 
 try:
     with open(get_folder() + 'config.json', 'r') as configFile:
@@ -16,8 +16,8 @@ try:
     TOKEN = file["TOKEN"]
     CHAT_ID = file["CHAT_ID"]
 
-except:
-    print("Error Importing the config.json file")
+except NameError:
+    print("ERROR IMPORTING the config.json file, please check your absolute path or folder permissions")
 
 
 bot = telebot.TeleBot(TOKEN)
