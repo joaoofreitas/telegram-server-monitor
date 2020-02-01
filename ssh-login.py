@@ -16,7 +16,7 @@ try:
     TOKEN = file["TOKEN"]
     CHAT_ID = file["CHAT_ID"]
 
-except NameError:
+except:
     print("ERROR IMPORTING the config.json file, please check your absolute path or folder permissions")
 
 
@@ -34,6 +34,6 @@ def get_user():
     username = username.stdout
     return username
 
-alert = "User " + get_user() + "login made on ip: "  + get_ip()
+alert = "The user " + get_user() + "just logged in on IP Address: "  + get_ip()
 
 bot.send_message(CHAT_ID, alert)
