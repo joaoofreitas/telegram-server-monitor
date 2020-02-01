@@ -28,7 +28,8 @@ def sensor():
     return output
 
 def clientIPs():
-    output = subprocess.run(r'echo $SSH_CONNECTION | cut -d " " -f 1', shell=True, check=True, stdout=subprocess.PIPE, universal_newlines=True)
+    command = r"netstat -anp --tcp | awk '{print $5}' | awk 'NR==5,NR==5000'"
+    output = subprocess.run(command, shell=True, check=True, stdout=subprocess.PIPE, universal_newlines=True)
     output = output.stdout
     return output
 
