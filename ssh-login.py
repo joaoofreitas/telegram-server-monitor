@@ -1,9 +1,20 @@
 #!/usr/bin/python3
+from json import loads as jsonloads
 import subprocess
 import telebot
 
+try:
+    with open('config.json', 'r') as configFile:
+        config = configFile.read()
+    file = jsonloads(config)
 
-TOKEN = ""
+    TOKEN = file["TOKEN"]
+    CHAT_ID = file["CHAT_ID"]
+
+except:
+    print("Error Importing the config.json file")
+
+
 bot = telebot.TeleBot(TOKEN)
 
 #put this script running on /etc/bash.bashrc
@@ -20,4 +31,4 @@ def get_user():
 
 alert = "User " + get_user() + "login made on ip: "  + get_ip()
 
-bot.send_message("406247007", alert)
+bot.send_message(CHAT_ID, alert)

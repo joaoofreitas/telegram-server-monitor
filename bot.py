@@ -1,10 +1,20 @@
 #!/usr/bin/python3
-
+from json import loads as jsonloads
 from requests import get
 import  subprocess
 import telebot
 
-TOKEN = ""
+try:
+    with open('config.json', 'r') as configFile:
+        config = configFile.read()
+    file = jsonloads(config)
+
+    TOKEN = file["TOKEN"]
+    CHAT_ID = file["CHAT_ID"]
+
+except:
+    print("Error Importing the config.json file")
+
 bot = telebot.TeleBot(TOKEN)
 
 ip = get('https://api.ipify.org').text
@@ -33,6 +43,8 @@ def keyboard():
     markup.row(sensors_, listActive_)
 
     return markup
+
+
 
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
