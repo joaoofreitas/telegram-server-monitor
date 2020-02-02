@@ -54,6 +54,12 @@ def keyboard():
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
     bot.reply_to(message, "Hello, Im Anton. How can I help you?", reply_markup=keyboard())
+    
+@bot.message_handler(commands=['test', 'help'])
+def test(message):
+    print(message)
+    
+
 
 
 @bot.message_handler(commands=['showip'])
@@ -95,4 +101,5 @@ def echo_all(message):
 	bot.reply_to(message, "Sorry, didn't get that...")
 
 bot.polling()
+
 

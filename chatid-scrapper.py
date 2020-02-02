@@ -38,13 +38,11 @@ try:
 
     TOKEN = file["TOKEN"]
     CHAT_ID = file["CHAT_ID"]
-    print("Configuration File Imported Sucessfully")
 
 except:
     print("ERROR IMPORTING the config.json file, please check your absolute path or folder permissions")
 
-URL = 'https://api.telegram.org/bot' + TOKEN +'/getUpdates'
-FETCH = get(URL).text
+FETCH = get('https://api.telegram.org/bot' + TOKEN +'/getUpdates').text
 
 getUpdates = json_Update()
 getUpdates.writeUpdates(FETCH)
