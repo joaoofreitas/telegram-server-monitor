@@ -13,9 +13,11 @@ try:
     with open(get_folder() + 'config.json', 'r') as configFile:
         config = configFile.read()
     file = jsonloads(config)
-
+    
     TOKEN = file["TOKEN"]
     CHAT_ID = file["CHAT_ID"]
+    WHITELIST = file["WHITELIST"]
+    
 
 except:
     print("ERROR IMPORTING the config.json file, please check your absolute path or folder permissions")
@@ -53,14 +55,12 @@ def keyboard():
 
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
-    bot.reply_to(message, "Hello, Im Anton. How can I help you?", reply_markup=keyboard())
+    username = message.chat.username
+    if(username not in WHITELIST):
+       bot.reply_to(message, "I don't know you... Bye")
+    else:
+        bot.reply_to(message, "Hello, Im Anton. How can I help you?", reply_markup=keyboard())
     
-@bot.message_handler(commands=['test', 'help'])
-def test(message):
-    print(message)
-    
-
-
 
 @bot.message_handler(commands=['showip'])
 def showIP(message):
