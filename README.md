@@ -3,7 +3,7 @@ Small project, that I used to monitor my small RaspberryPi server, without SSH.
 It needs some eficiency upgrades, but it's currently working.
 
 Features:
--Public IP Address Fetcher
+-Public IP Address Fetcher\n
 -Temperature Fetcher
 -Connected IP's list
 -Warning message on ssh login.
