@@ -1,6 +1,9 @@
 # server-telegram-monitor
 Small project that I use to monitor my small RaspberryPi server, without SSH. On any device...
 
+### How was it build?
+I created this project using only Python3 and _[pyTelegramBotAPI](https://github.com/eternnoir/pyTelegramBotAPI)_ with embeeded _bash_ scripting to generate the messages.
+
 ### Instalation
 ##### Requirements
 These are the following requirements:
@@ -41,7 +44,7 @@ With this, the bot will send you a message on bash login each time a user logs i
 After you can create a systemctl service or what works best for you to run the bot on startup.
 Any questions you can message me on Twitter or open a issue here no git, I will be glad to help.
 
-##### Features and Future Updates
+### Features and Future Updates
 Features:
 1. Public IP Address Fetcher
 2. Temperature Fetcher
@@ -52,4 +55,7 @@ Future Updates:
 1. Add an installation
 2. Performance Upgrade (even though is really fast).
 
+### Example
 
+
+Thank you guys for the support, as I said, feel free to chat with me about this or any other project. 
