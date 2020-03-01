@@ -1,5 +1,5 @@
 # server-telegram-monitor
-Small project, that I use to monitor my small RaspberryPi server, without SSH.
+Small project that I use to monitor my small RaspberryPi server, without SSH. On any device...
 
 ### Instalation
 ##### Requirements
