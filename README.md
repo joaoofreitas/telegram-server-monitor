@@ -5,18 +5,18 @@ Small project that I use to monitor my small RaspberryPi server, without SSH. On
 I created this project using only Python3 and _[pyTelegramBotAPI](https://github.com/eternnoir/pyTelegramBotAPI)_ with embeeded _bash_ scripting to generate the messages.
 
 ### Instalation
-##### Requirements
+##### Requirements 📲
 These are the following requirements:
 1. python-pip3
 2. python3
 3. pyTelegramBotAPI
 
-##### Instalation
+##### Instalation 🤖
 I will create a bash script that will take care of all that for you. But for now you can follow the instructions below if you really want to try this up.
 
 Stay tuned.
 
-##### Configuring and running the bot
+##### Configuring and running the bot 🤖
 
 For now, you can just run the bot.py on the startup and it will be running!
 Run the _ssh-login.py_ so it sends you a message on a user SSH login, so you can control who is acesssing
@@ -44,12 +44,12 @@ With this, the bot will send you a message on bash login each time a user logs i
 After you can create a systemctl service or what works best for you to run the bot on startup.
 Any questions you can message me on Twitter or open a issue here no git, I will be glad to help.
 
-### Usage
+### Usage 📟
 
 After running the bot. You can acess your telegram and use _/start_ on your bot. And start messaging him!
 Just has easy has it gets 😎
 
-### Features and Future Updates
+### Features and Future Updates 🚀
 Features:
 1. Public IP Address Fetcher
 2. Temperature Fetcher
