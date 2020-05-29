@@ -2,16 +2,16 @@
 Small project that I use to monitor my small RaspberryPi server, without SSH. On any device...
 
 ### How was it build? 🐍
-I created this project using only Python3 and _[pyTelegramBotAPI](https://github.com/eternnoir/pyTelegramBotAPI)_ with embeeded _bash_ scripting to generate the messages.
+I created this project using only Python3 and _[pyTelegramBotAPI](https://github.com/eternnoir/pyTelegramBotAPI)_ with embedded _bash_ scripting to generate the messages.
 
-### Instalation
+### Installation
 ##### Requirements 📲
 These are the following requirements:
 1. python-pip3
 2. python3
 3. pyTelegramBotAPI
 
-##### Instalation 🤖
+##### Installation 🤖
 I will create a bash script that will take care of all that for you. But for now you can follow the instructions below if you really want to try this up.
 
 Stay tuned.
@@ -19,7 +19,7 @@ Stay tuned.
 ##### Configuring and running the bot 🤖
 
 For now, you can just run the bot.py on the startup and it will be running!
-Run the _ssh-login.py_ so it sends you a message on a user SSH login, so you can control who is acesssing
+Run the _ssh-login.py_ so it sends you a message on a user SSH login, so you can control who is accessing
 your server.
 
 *(In case you are new at this)*
@@ -46,7 +46,7 @@ Any questions you can message me on Twitter or open a issue here no git, I will 
 
 ### Usage 📟
 
-After running the bot. You can acess your telegram and use _/start_ on your bot. And start messaging him!
+After running the bot. You can access your telegram and use _/start_ on your bot. And start messaging him!
 Just has easy has it gets 😎
 
 ### Features and Future Updates 🚀
