@@ -1,4 +1,4 @@
-# server-telegram-monitor 💻
+# Telegram Server Monitor 💻
 Small project that I use to monitor my small RaspberryPi server, without SSH. On any device...
 
 ### How was it build? 🐍
